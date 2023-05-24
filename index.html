@@ -10,20 +10,32 @@
 </head>
 
 <body>
+  <div class="appContainer">
+    <div class="appLeft">
+      <form class="formDate">
+        <label for="day">Day</label>
+        <input type="number" id="day" name="day" placeholder="Day" min="1" max="31" />
 
-  Day
-  DD
+        <label for="month">Month</label>
+        <input type="number" id="month" name="month" placeholder="Month" min="1" max="12" />
 
-  Month
-  MM
+        <label for="year">Year</label>
+        <input type="number" id="year" name="year" placeholder="Year" min="1" max="2023" />
+      </form>
 
-  Year
-  YYYY
-
-  -- years
-  -- months
-  -- days
-
+      <div class="showAgeContainer">
+        <p class="ageYearNum">0</p>
+        <p class="ageYear">years</p>
+        <p class="ageMonthNum">0</p>
+        <p class="ageMonth">month</p>
+        <p class="ageDayNum">0</p>
+        <p class="ageDay">days</p>
+      </div>
+    </div>
+    <div class="appRight">
+      <img src="./assets/images/icon-arrow.svg" alt="Arrow icon for calculating age">
+    </div>
+  </div>
   <div class="attribution">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
     Coded by <a href="https://www.frontendmentor.io/profile/muhammadderic">muhammadderic</a>.
