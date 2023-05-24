@@ -13,27 +13,42 @@
   <div class="appContainer">
     <div class="appLeft">
       <form class="formDate">
-        <label for="day">Day</label>
-        <input type="number" id="day" name="day" placeholder="Day" min="1" max="31" />
+        <div class="dateWrapper">
+          <label for="day">DAY</label>
+          <input type="number" id="day" name="day" placeholder="Day" min="1" max="31" />
+        </div>
 
-        <label for="month">Month</label>
-        <input type="number" id="month" name="month" placeholder="Month" min="1" max="12" />
+        <div class="dateWrapper">
+          <label for="month">MONTH</label>
+          <input type="number" id="month" name="month" placeholder="Month" min="1" max="12" />
+        </div>
 
-        <label for="year">Year</label>
-        <input type="number" id="year" name="year" placeholder="Year" min="1" max="2023" />
+        <div class="dateWrapper">
+          <label for="year">YEAR</label>
+          <input type="number" id="year" name="year" placeholder="Year" min="1" max="2023" />
+        </div>
       </form>
 
       <div class="showAgeContainer">
-        <p class="ageYearNum">0</p>
-        <p class="ageYear">years</p>
-        <p class="ageMonthNum">0</p>
-        <p class="ageMonth">month</p>
-        <p class="ageDayNum">0</p>
-        <p class="ageDay">days</p>
+        <div class="ageWrapper">
+          <p class="ageYearNum">0</p>
+          &nbsp;
+          <p class="ageYear">years</p>
+        </div>
+        <div class="ageWrapper">
+          <p class="ageMonthNum">0</p>
+          &nbsp;
+          <p class="ageMonth">month</p>
+        </div>
+        <div class="ageWrapper">
+          <p class="ageDayNum">0</p>
+          &nbsp;
+          <p class="ageDay">days</p>
+        </div>
       </div>
     </div>
     <div class="appRight">
-      <img src="./assets/images/icon-arrow.svg" alt="Arrow icon for calculating age">
+      <img class="iconArrow" src="./assets/images/icon-arrow.svg" alt="Arrow icon for calculating age">
     </div>
   </div>
   <div class="attribution">

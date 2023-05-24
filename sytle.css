@@ -1,16 +1,122 @@
 @font-face {
   font-family: "Poppins";
-  src: url("Poppins-Regular.ttf") format("truetype"),
-    url("Poppins-Bold.ttf") format("truetype"),
-    url("Poppins-ExtraBoldItalic.ttf") format("truetype");
+  src: url("./assets/fonts/Poppins-Regular.ttf") format("truetype"),
+    url("./assets/fonts/Poppins-Bold.ttf") format("truetype"),
+    url("./assets/fonts/Poppins-ExtraBoldItalic.ttf") format("truetype");
 }
 
 body {
+  height: 100vh;
+  width: 1440px;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   font-family: 'Poppins', sans-serif;
   background-color: hsl(0, 0%, 94%);
+  box-sizing: border-box;
+}
+
+.appContainer {
+  width: 40%;
+  height: 60%;
+  margin-top: auto;
+  padding: 2rem;
+  display: flex;
+  justify-content: space-between;
+  background-color: hsl(0, 0%, 100%);
+  border-radius: 1rem;
+  border-bottom-right-radius: 5rem;
+}
+
+.appLeft {
+  width: 100%;
+}
+
+.formDate {
+  height: 33%;
+  width: 100%;
+  display: flex;
+  border-bottom: 2px solid hsl(0, 0%, 86%);
+}
+
+.dateWrapper {
+  padding: .5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.dateWrapper label {
+  padding: .5rem 0;
+  font-weight: bold;
+  font-size: 12px;
+  color: hsl(0, 1%, 44%);
+}
+
+.dateWrapper input {
+  width: 100px;
+  padding: 0.5rem 1rem;
+  font-family: "Poppins";
+  font-size: 25px;
+  font-weight: bold;
+  color: hsl(0, 0%, 8%);
+  border: 1px solid hsl(0, 0%, 86%);
+  border-radius: .5rem;
+}
+
+.dateWrapper input:focus {
+  outline: 1px solid hsl(259, 100%, 65%);
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.showAgeContainer {
+  /* border: 1px solid green; */
+  height: calc(100% - 33%);
+  font-size: 52px;
+}
+
+.ageWrapper {
+  display: flex;
+  color: hsl(0, 0%, 8%);
+}
+
+.ageWrapper p {
+  margin: 0;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.ageWrapper p:first-child {
+  color: hsl(259, 100%, 65%);
+}
+
+.appRight {
+  height: 33%;
+  display: flex;
+  align-items: flex-end;
+  position: relative;
+}
+
+.iconArrow {
+  height: 20px;
+  padding: 1rem;
+  background-color: hsl(259, 100%, 65%);
+  border-radius: 50%;
+  position: relative;
+  bottom: -25px;
+  cursor: pointer;
 }
 
 .attribution {
+  margin-top: auto;
   font-size: 11px;
   text-align: center;
 }
