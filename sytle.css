@@ -39,6 +39,12 @@ body {
   height: 33%;
   width: 100%;
   display: flex;
+  justify-content: space-between;
+}
+
+.formDataInputs {
+  width: 100%;
+  display: flex;
   border-bottom: 2px solid hsl(0, 0%, 86%);
 }
 
@@ -70,6 +76,32 @@ body {
   outline: 1px solid hsl(259, 100%, 65%);
 }
 
+.formButtonContainer {
+  width: 10%;
+  position: relative;
+}
+
+.formButton {
+  height: 60px;
+  padding: 0;
+  background: none;
+  border: none;
+  position: absolute;
+  bottom: -2rem;
+}
+
+.iconArrow {
+  height: 20px;
+  padding: 1rem;
+  background-color: hsl(259, 100%, 65%);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.iconArrow:hover {
+  background-color: hsl(0, 0%, 8%);
+}
+
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -96,23 +128,6 @@ input::-webkit-inner-spin-button {
 
 .ageWrapper p:first-child {
   color: hsl(259, 100%, 65%);
-}
-
-.appRight {
-  height: 33%;
-  display: flex;
-  align-items: flex-end;
-  position: relative;
-}
-
-.iconArrow {
-  height: 20px;
-  padding: 1rem;
-  background-color: hsl(259, 100%, 65%);
-  border-radius: 50%;
-  position: relative;
-  bottom: -25px;
-  cursor: pointer;
 }
 
 .attribution {

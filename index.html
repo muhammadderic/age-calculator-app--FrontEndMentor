@@ -13,19 +13,26 @@
   <div class="appContainer">
     <div class="appLeft">
       <form class="formDate">
-        <div class="dateWrapper">
-          <label for="day">DAY</label>
-          <input type="number" id="day" name="day" placeholder="Day" min="1" max="31" />
-        </div>
+        <div class="formDataInputs">
+          <div class="dateWrapper">
+            <label for="day">DAY</label>
+            <input type="number" id="day" name="day" placeholder="Day" min="1" max="31" />
+          </div>
 
-        <div class="dateWrapper">
-          <label for="month">MONTH</label>
-          <input type="number" id="month" name="month" placeholder="Month" min="1" max="12" />
-        </div>
+          <div class="dateWrapper">
+            <label for="month">MONTH</label>
+            <input type="number" id="month" name="month" placeholder="Month" min="1" max="12" />
+          </div>
 
-        <div class="dateWrapper">
-          <label for="year">YEAR</label>
-          <input type="number" id="year" name="year" placeholder="Year" min="1" max="2023" />
+          <div class="dateWrapper">
+            <label for="year">YEAR</label>
+            <input type="number" id="year" name="year" placeholder="Year" min="1" max="2023" />
+          </div>
+        </div>
+        <div class="formButtonContainer">
+          <button class="formButton">
+            <img class="iconArrow" src="./assets/images/icon-arrow.svg" alt="Arrow icon for calculating age">
+          </button>
         </div>
       </form>
 
@@ -46,9 +53,6 @@
           <p class="ageDay">days</p>
         </div>
       </div>
-    </div>
-    <div class="appRight">
-      <img class="iconArrow" src="./assets/images/icon-arrow.svg" alt="Arrow icon for calculating age">
     </div>
   </div>
   <div class="attribution">
