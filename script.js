@@ -1,7 +1,8 @@
-console.log("I work!")
-
 const form = document.querySelector(".formDate");
 const formButton = document.querySelector(".formButton");
+const ageYearNum = document.querySelector(".ageYearNum");
+const ageMonthNum = document.querySelector(".ageMonthNum");
+const ageDayNum = document.querySelector(".ageDayNum");
 
 const formData = [];
 
@@ -19,8 +20,10 @@ formButton.addEventListener("click", (e) => {
     }
   }
   const calculatedAge = calculateAge(formData[0], formData[1], formData[2]);
+  ageYearNum.innerHTML = calculatedAge.yourYear;
+  ageMonthNum.innerHTML = calculatedAge.yourMonth;
+  ageDayNum.innerHTML = calculatedAge.yourDate;
   formData.length = 0;
-  console.log(calculatedAge);
 })
 
 function calculateAge(date, month, year) {
