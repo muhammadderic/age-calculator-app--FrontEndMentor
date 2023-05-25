@@ -21,7 +21,7 @@ body {
 
 .appContainer {
   width: 40%;
-  height: 60%;
+  height: 350px;
   margin-top: auto;
   padding: 2rem;
   display: flex;
@@ -129,7 +129,6 @@ input::-webkit-inner-spin-button {
 }
 
 .showAgeContainer {
-  /* border: 1px solid green; */
   height: calc(100% - 33%);
   font-size: 52px;
 }
@@ -157,4 +156,70 @@ input::-webkit-inner-spin-button {
 
 .attribution a {
   color: hsl(228, 45%, 44%);
+}
+
+@media (max-width: 1025px) {
+  body {
+    width: 1025px;
+  }
+
+  .formButton {
+    right: 0;
+  }
+}
+
+@media (max-width: 769px) {
+  body {
+    width: 769px;
+  }
+
+  .appContainer {
+    width: 60%;
+  }
+}
+
+@media (max-width: 481px) {
+  body {
+    width: 480px;
+  }
+
+  .showAgeContainer {
+    margin-top: 30px;
+    font-size: 46px;
+  }
+
+  .appContainer {
+    width: 80%;
+  }
+
+  .dateWrapper input {
+    width: 80px;
+  }
+
+  .formButton {
+    right: calc(480px/3);
+  }
+}
+
+@media (max-width: 376px) {
+  body {
+    width: 375px;
+  }
+
+  .appContainer {
+    width: 80%;
+  }
+
+  .showAgeContainer {
+    margin-top: 30px;
+    font-size: 46px;
+  }
+
+  .dateWrapper input {
+    width: 60px;
+  }
+
+  .formButton {
+    right: calc(375px/3);
+  }
 }

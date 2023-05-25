@@ -82,8 +82,6 @@ formButton.addEventListener("click", (e) => {
     validNumberOfDateValue = validNumberOfDate(formData[0], formData[1], formData[2]);
   }
 
-  console.log("excess: ", excessDateValue, ", validNumber: ", validNumberOfDateValue);
-
   if (excessDateValue && validNumberOfDateValue) {
     const calculatedAge = calculateAge(formData[0], formData[1], formData[2]);
     ageYearNum.innerHTML = calculatedAge.yourYear;
