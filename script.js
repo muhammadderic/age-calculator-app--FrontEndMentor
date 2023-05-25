@@ -16,6 +16,7 @@ const errorInputMonthText = document.querySelector(".inputMonthNum ~ .errorInput
 const errorInputYearText = document.querySelector(".inputYearNum ~ .errorInputText")
 
 const formData = [];
+const formDataEmpty = [];
 
 const currentDate = new Date().toLocaleDateString()
 const currentDateSplit = currentDate.split("/");
@@ -34,14 +35,54 @@ formButton.addEventListener("click", (e) => {
   inputDayNum.classList.remove("errorInput");
   inputMonthNum.classList.remove("errorInput");
   inputYearNum.classList.remove("errorInput");
+  errorInputDayText.innerHTML = "Must be a valid day";
+  errorInputMonthText.innerHTML = "Must be a valid day";
+  errorInputYearText.innerHTML = "Must be a valid day";
+  ageDayNum.innerHTML = "--";
+  ageMonthNum.innerHTML = "--";
+  ageYearNum.innerHTML = "--";
+
+  let emptyDataInput = true;
 
   for (const input of form.elements) {
     if (input.type === "number") {
+      if (input.value === "") {
+        formDataEmpty.push(true);
+      } else {
+        formDataEmpty.push(false);
+      }
+
       formData.push(Number(input.value));
     }
   }
-  const excessDateValue = excessDate(formData[0], formData[1], formData[2], currentDateSplit[1], currentDateSplit[0], currentDateSplit[2])
-  const validNumberOfDateValue = validNumberOfDate(formData[0], formData[1], formData[2]);
+  if (formDataEmpty[0]) {
+    errorInputDayText.innerHTML = "This field is required";
+    createErrorDay();
+  }
+  if (formDataEmpty[1]) {
+    errorInputMonthText.innerHTML = "This field is required";
+    createErrorMonth();
+  }
+  if (formDataEmpty[2]) {
+    errorInputYearText.innerHTML = "This field is required";
+    createErrorYear();
+  }
+
+  for (i = 0; i < 3; i++) {
+    if (formDataEmpty[i]) {
+      emptyDataInput = false;
+    }
+  }
+
+  let excessDateValue = false;
+  let validNumberOfDateValue = false;
+
+  if (emptyDataInput) {
+    excessDateValue = excessDate(formData[0], formData[1], formData[2], currentDateSplit[1], currentDateSplit[0], currentDateSplit[2])
+    validNumberOfDateValue = validNumberOfDate(formData[0], formData[1], formData[2]);
+  }
+
+  console.log("excess: ", excessDateValue, ", validNumber: ", validNumberOfDateValue);
 
   if (excessDateValue && validNumberOfDateValue) {
     const calculatedAge = calculateAge(formData[0], formData[1], formData[2]);
@@ -50,6 +91,7 @@ formButton.addEventListener("click", (e) => {
     ageDayNum.innerHTML = calculatedAge.yourDate;
   }
   formData.length = 0;
+  formDataEmpty.length = 0;
 })
 
 function calculateAge(date, month, year) {
@@ -82,6 +124,7 @@ function calculateAge(date, month, year) {
   return { yourDate, yourMonth, yourYear };
 }
 
+// Checks whether the date entered does not exceed today's date
 function excessDate(date, month, year, currentDate, currentMonth, currentYear) {
   if (year >= currentYear && month >= currentMonth && date > currentDate) {
     createErrorDay()
@@ -166,6 +209,8 @@ function validNumberOfDateExceptFebruary(date, month) {
   }
 }
 
+// Check whether the year entered is a leap year or not
+// If it's a leap year, then the date in February will be checked no later than 29 days
 function validNumberOfDate(date, month, year) {
   if (year % 4 === 0 || year % 100 === 0) {
     if (month === 2) {
