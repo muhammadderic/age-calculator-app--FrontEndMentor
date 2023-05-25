@@ -1,8 +1,13 @@
 const form = document.querySelector(".formDate");
 const formButton = document.querySelector(".formButton");
+
 const ageYearNum = document.querySelector(".ageYearNum");
 const ageMonthNum = document.querySelector(".ageMonthNum");
 const ageDayNum = document.querySelector(".ageDayNum");
+
+const inputDayNum = document.querySelector(".inputDayNum");
+const inputMonthNum = document.querySelector(".inputMonthNum");
+const inputYearNum = document.querySelector(".inputYearNum");
 
 const formData = [];
 

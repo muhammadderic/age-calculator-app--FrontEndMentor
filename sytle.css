@@ -36,7 +36,7 @@ body {
 }
 
 .formDate {
-  height: 33%;
+  height: 35%;
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -55,17 +55,22 @@ body {
 }
 
 .dateWrapper label {
-  padding: .5rem 0;
+  padding: .3rem 0;
   font-weight: bold;
   font-size: 12px;
+  letter-spacing: 2px;
   color: hsl(0, 1%, 44%);
+}
+
+.dateWrapper .errorInputLabel {
+  color: hsl(0, 100%, 67%);
 }
 
 .dateWrapper input {
   width: 100px;
   padding: 0.5rem 1rem;
   font-family: "Poppins";
-  font-size: 25px;
+  font-size: 20px;
   font-weight: bold;
   color: hsl(0, 0%, 8%);
   border: 1px solid hsl(0, 0%, 86%);
@@ -74,6 +79,20 @@ body {
 
 .dateWrapper input:focus {
   outline: 1px solid hsl(259, 100%, 65%);
+}
+
+.dateWrapper .errorInput {
+  border: 1px solid hsl(0, 100%, 67%);
+}
+
+.errorNone {
+  display: none;
+}
+
+.errorInputText {
+  margin: 0;
+  font-size: .7rem;
+  color: hsl(0, 100%, 67%);
 }
 
 .formButtonContainer {

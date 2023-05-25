@@ -16,18 +16,23 @@
       <form class="formDate">
         <div class="formDataInputs">
           <div class="dateWrapper">
-            <label for="day">DAY</label>
-            <input type="number" id="day" name="day" placeholder="Day" min="1" max="31" />
+            <label class="errorInputLabel" for="day">DAY</label>
+            <input class="inputDayNum errorInput" type="number" id="day" name="day" placeholder="DD" min="1" max="31" />
+            <p class="errorInputText">This field is required</p>
           </div>
 
           <div class="dateWrapper">
-            <label for="month">MONTH</label>
-            <input type="number" id="month" name="month" placeholder="Month" min="1" max="12" />
+            <label class="errorInputLabel" for="month">MONTH</label>
+            <input class="inputMonthNum errorInput" type="number" id="month" name="month" placeholder="MM" min="1"
+              max="12" />
+            <p class="errorInputText">This field is required</p>
           </div>
 
           <div class="dateWrapper">
-            <label for="year">YEAR</label>
-            <input type="number" id="year" name="year" placeholder="Year" min="1" max="2023" />
+            <label class="errorInputLabel" for="year">YEAR</label>
+            <input class="inputYearNum errorInput" type="number" id="year" name="year" placeholder="YYYY" min="1"
+              max="2023" />
+            <p class="errorInputText">This field is required</p>
           </div>
         </div>
         <div class="formButtonContainer">
