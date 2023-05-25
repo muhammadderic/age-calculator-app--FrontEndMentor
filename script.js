@@ -25,7 +25,6 @@ for (i = 0; i < currentDateSplit.length; i++) {
 
 formButton.addEventListener("click", (e) => {
   e.preventDefault();
-  const execute = [];
   errorInputDayText.classList.add("errorNone");
   errorInputMonthText.classList.add("errorNone");
   errorInputYearText.classList.add("errorNone");
@@ -41,70 +40,10 @@ formButton.addEventListener("click", (e) => {
       formData.push(Number(input.value));
     }
   }
-  if (formData[2] >= currentDateSplit[2] && formData[1] >= currentDateSplit[0] && formData[0] > currentDateSplit[1]) {
-    createErrorDay()
-    createErrorMonth()
-    createErrorYear()
-  } else if (formData[2] >= currentDateSplit[2] && formData[1] > currentDateSplit[0]) {
-    createErrorMonth()
-    createErrorYear()
-  } else if (formData[2] > currentDateSplit[2]) {
-    createErrorYear()
-  } else {
-    execute.push(true);
-  }
-  if (formData[2] % 4 === 0 || formData[2] % 100 === 0) {
-    if (formData[1] === 2) {
-      if (formData[0] < 1 || formData[0] > 29) {
-        createErrorDay()
-      } else {
-        execute.push(true);
-      }
-    } else if (formData[1] % 2 === 0) {
-      if (formData[0] < 1 || formData[0] > 30) {
-        createErrorDay()
-      } else {
-        execute.push(true);
-      }
-    } else if (formData[1] % 2 === 1) {
-      if (formData[0] < 1 || formData[0] > 31) {
-        createErrorDay()
-      } else {
-        execute.push(true);
-      }
-    }
-  } else {
-    if (formData[1] === 2) {
-      if (formData[0] < 1 || formData[0] > 28) {
-        createErrorDay()
-      } else {
-        execute.push(true);
-      }
-    } else if (formData[1] % 2 === 0) {
-      if (formData[0] < 1 || formData[0] > 30) {
-        createErrorDay()
-      } else {
-        execute.push(true);
-      }
-    } else if (formData[1] % 2 === 1) {
-      if (formData[0] < 1 || formData[0] > 31) {
-        createErrorDay()
-      } else {
-        execute.push(true);
-      }
-    }
-  }
-  if (formData[1] < 1 || formData[1] > 12) {
-    createErrorMonth()
-  } else {
-    execute.push(true);
-  }
-  if (formData[2] < 1 || formData[2] > currentDateSplit[2]) {
-    createErrorYear()
-  } else {
-    execute.push(true);
-  }
-  if (execute.length === 4) {
+  const excessDateValue = excessDate(formData[0], formData[1], formData[2], currentDateSplit[1], currentDateSplit[0], currentDateSplit[2])
+  const validNumberOfDateValue = validNumberOfDate(formData[0], formData[1], formData[2]);
+
+  if (excessDateValue && validNumberOfDateValue) {
     const calculatedAge = calculateAge(formData[0], formData[1], formData[2]);
     ageYearNum.innerHTML = calculatedAge.yourYear;
     ageMonthNum.innerHTML = calculatedAge.yourMonth;
@@ -141,6 +80,114 @@ function calculateAge(date, month, year) {
     --yourYear;
   }
   return { yourDate, yourMonth, yourYear };
+}
+
+function excessDate(date, month, year, currentDate, currentMonth, currentYear) {
+  if (year >= currentYear && month >= currentMonth && date > currentDate) {
+    createErrorDay()
+    createErrorMonth()
+    createErrorYear()
+    return false;
+  } else if (year >= currentYear && month > currentMonth) {
+    createErrorMonth()
+    createErrorYear()
+    return false;
+  } else if (year > currentYear) {
+    createErrorYear()
+    return false;
+  }
+  return true;
+}
+
+function monthWith30Days(date) {
+  if (date < 1 || date > 30) {
+    createErrorDay()
+    return false;
+  }
+  return true;
+}
+function monthWith31Days(date) {
+  if (date < 1 || date > 31) {
+    createErrorDay()
+    return false;
+  }
+  return true;
+}
+
+function validNumberOfDateExceptFebruary(date, month) {
+  switch (month) {
+    // January
+    case 1: {
+      return monthWith31Days(date);
+    }
+    // March
+    case 3: {
+      return monthWith31Days(date);
+    }
+    // April
+    case 4: {
+      return monthWith30Days(date);
+    }
+    // May
+    case 5: {
+      return monthWith31Days(date);
+    }
+    // June
+    case 6: {
+      return monthWith30Days(date);
+    }
+    // July
+    case 7: {
+      return monthWith31Days(date);
+    }
+    // August
+    case 8: {
+      return monthWith31Days(date);
+    }
+    // September
+    case 9: {
+      return monthWith30Days(date);
+    }
+    // October
+    case 10: {
+      return monthWith31Days(date);
+    }
+    // November
+    case 11: {
+      return monthWith30Days(date);
+    }
+    // December
+    case 12: {
+      return monthWith31Days(date);
+    }
+    default: {
+      return false;
+    }
+  }
+}
+
+function validNumberOfDate(date, month, year) {
+  if (year % 4 === 0 || year % 100 === 0) {
+    if (month === 2) {
+      if (date < 1 || date > 29) {
+        createErrorDay()
+        return false;
+      }
+      return true;
+    } else {
+      return validNumberOfDateExceptFebruary(date, month)
+    }
+  } else {
+    if (month === 2) {
+      if (date < 1 || date > 28) {
+        createErrorDay()
+        return false;
+      }
+      return true;
+    } else {
+      return validNumberOfDateExceptFebruary(date, month)
+    }
+  }
 }
 
 function createErrorDay() {
