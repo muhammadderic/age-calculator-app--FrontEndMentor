@@ -25,6 +25,7 @@ for (i = 0; i < currentDateSplit.length; i++) {
 
 formButton.addEventListener("click", (e) => {
   e.preventDefault();
+  const execute = [];
   errorInputDayText.classList.add("errorNone");
   errorInputMonthText.classList.add("errorNone");
   errorInputYearText.classList.add("errorNone");
@@ -41,82 +42,74 @@ formButton.addEventListener("click", (e) => {
     }
   }
   if (formData[2] >= currentDateSplit[2] && formData[1] >= currentDateSplit[0] && formData[0] > currentDateSplit[1]) {
-    errorInputDayText.classList.remove("errorNone");
-    inputDayLabel.classList.add("errorInputLabel");
-    inputDayNum.classList.add("errorInput");
-    errorInputMonthText.classList.remove("errorNone");
-    inputMonthLabel.classList.add("errorInputLabel");
-    inputMonthNum.classList.add("errorInput");
-    errorInputYearText.classList.remove("errorNone");
-    inputYearLabel.classList.add("errorInputLabel");
-    inputYearNum.classList.add("errorInput");
+    createErrorDay()
+    createErrorMonth()
+    createErrorYear()
   } else if (formData[2] >= currentDateSplit[2] && formData[1] > currentDateSplit[0]) {
-    errorInputMonthText.classList.remove("errorNone");
-    inputMonthLabel.classList.add("errorInputLabel");
-    inputMonthNum.classList.add("errorInput");
-    errorInputYearText.classList.remove("errorNone");
-    inputYearLabel.classList.add("errorInputLabel");
-    inputYearNum.classList.add("errorInput");
+    createErrorMonth()
+    createErrorYear()
   } else if (formData[2] > currentDateSplit[2]) {
-    errorInputYearText.classList.remove("errorNone");
-    inputYearLabel.classList.add("errorInputLabel");
-    inputYearNum.classList.add("errorInput");
+    createErrorYear()
+  } else {
+    execute.push(true);
   }
   if (formData[2] % 4 === 0 || formData[2] % 100 === 0) {
     if (formData[1] === 2) {
       if (formData[0] < 1 || formData[0] > 29) {
-        errorInputDayText.classList.remove("errorNone");
-        inputDayLabel.classList.add("errorInputLabel");
-        inputDayNum.classList.add("errorInput");
+        createErrorDay()
+      } else {
+        execute.push(true);
       }
     } else if (formData[1] % 2 === 0) {
       if (formData[0] < 1 || formData[0] > 30) {
-        errorInputDayText.classList.remove("errorNone");
-        inputDayLabel.classList.add("errorInputLabel");
-        inputDayNum.classList.add("errorInput");
+        createErrorDay()
+      } else {
+        execute.push(true);
       }
-    } else {
+    } else if (formData[1] % 2 === 1) {
       if (formData[0] < 1 || formData[0] > 31) {
-        errorInputDayText.classList.remove("errorNone");
-        inputDayLabel.classList.add("errorInputLabel");
-        inputDayNum.classList.add("errorInput");
+        createErrorDay()
+      } else {
+        execute.push(true);
       }
     }
   } else {
     if (formData[1] === 2) {
       if (formData[0] < 1 || formData[0] > 28) {
-        errorInputDayText.classList.remove("errorNone");
-        inputDayLabel.classList.add("errorInputLabel");
-        inputDayNum.classList.add("errorInput");
+        createErrorDay()
+      } else {
+        execute.push(true);
       }
     } else if (formData[1] % 2 === 0) {
       if (formData[0] < 1 || formData[0] > 30) {
-        errorInputDayText.classList.remove("errorNone");
-        inputDayLabel.classList.add("errorInputLabel");
-        inputDayNum.classList.add("errorInput");
+        createErrorDay()
+      } else {
+        execute.push(true);
       }
-    } else {
+    } else if (formData[1] % 2 === 1) {
       if (formData[0] < 1 || formData[0] > 31) {
-        errorInputDayText.classList.remove("errorNone");
-        inputDayLabel.classList.add("errorInputLabel");
-        inputDayNum.classList.add("errorInput");
+        createErrorDay()
+      } else {
+        execute.push(true);
       }
     }
   }
   if (formData[1] < 1 || formData[1] > 12) {
-    errorInputMonthText.classList.remove("errorNone");
-    inputMonthLabel.classList.add("errorInputLabel");
-    inputMonthNum.classList.add("errorInput");
+    createErrorMonth()
+  } else {
+    execute.push(true);
   }
   if (formData[2] < 1 || formData[2] > currentDateSplit[2]) {
-    errorInputYearText.classList.remove("errorNone");
-    inputYearLabel.classList.add("errorInputLabel");
-    inputYearNum.classList.add("errorInput");
+    createErrorYear()
+  } else {
+    execute.push(true);
   }
-  const calculatedAge = calculateAge(formData[0], formData[1], formData[2]);
-  ageYearNum.innerHTML = calculatedAge.yourYear;
-  ageMonthNum.innerHTML = calculatedAge.yourMonth;
-  ageDayNum.innerHTML = calculatedAge.yourDate;
+  if (execute.length === 4) {
+    const calculatedAge = calculateAge(formData[0], formData[1], formData[2]);
+    ageYearNum.innerHTML = calculatedAge.yourYear;
+    ageMonthNum.innerHTML = calculatedAge.yourMonth;
+    ageDayNum.innerHTML = calculatedAge.yourDate;
+  }
   formData.length = 0;
 })
 
@@ -148,4 +141,20 @@ function calculateAge(date, month, year) {
     --yourYear;
   }
   return { yourDate, yourMonth, yourYear };
+}
+
+function createErrorDay() {
+  errorInputDayText.classList.remove("errorNone");
+  inputDayLabel.classList.add("errorInputLabel");
+  inputDayNum.classList.add("errorInput");
+}
+function createErrorMonth() {
+  errorInputMonthText.classList.remove("errorNone");
+  inputMonthLabel.classList.add("errorInputLabel");
+  inputMonthNum.classList.add("errorInput");
+}
+function createErrorYear() {
+  errorInputYearText.classList.remove("errorNone");
+  inputYearLabel.classList.add("errorInputLabel");
+  inputYearNum.classList.add("errorInput");
 }
